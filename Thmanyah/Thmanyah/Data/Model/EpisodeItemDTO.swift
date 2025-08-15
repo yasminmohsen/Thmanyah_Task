@@ -4,6 +4,7 @@
 //
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
+import Foundation
 
 struct EpisodeItemDTO: Codable, Identifiable {
     var id: String { episodeId }
@@ -15,7 +16,7 @@ struct EpisodeItemDTO: Codable, Identifiable {
     let duration: Int?
     let avatarURL: String?
     let releaseDate: String?
-    let audioURL: URL?
+    let audioURL: String?
 
     enum CodingKeys: String, CodingKey {
         case episodeId = "episode_id"

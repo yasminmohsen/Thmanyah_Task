@@ -4,13 +4,14 @@
 //
 //  Created by Yasmin Mohsen on 14/08/2025.
 //
+import Foundation
 
 struct SectionDTO: Codable {
     let name: String
     let type: SectionLayoutTypeDTO
     let contentType: String
     let order: Int
-    let content: [ContentDTO]
+    let content: [SectionContentDTO]
 
     enum CodingKeys: String, CodingKey {
         case name, type, order, content
