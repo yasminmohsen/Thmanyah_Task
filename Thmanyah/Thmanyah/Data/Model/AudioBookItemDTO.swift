@@ -5,8 +5,7 @@
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
 
-struct AudioBookItemDTO: Codable, Identifiable {
-    var id: String { audioBookId }
+struct AudioBookItemDTO: Codable {
     let audioBookId: String
     let name: String
     let authorName: String?
@@ -26,5 +25,9 @@ struct AudioBookItemDTO: Codable, Identifiable {
         case duration, language
         case releaseDate = "release_date"
         case score
+    }
+    
+    func toDomain() -> AudioBookItem {
+        return AudioBookItem(audioBookId: audioBookId, name: name, authorName: authorName, description: description, avatarURL: avatarURL, duration: duration, language: language, releaseDate: releaseDate, score: score)
     }
 }

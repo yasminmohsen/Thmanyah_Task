@@ -13,4 +13,8 @@ struct PaginationDTO: Codable {
         case nextPage = "next_page"
         case totalPages = "total_pages"
     }
+    
+    func toDomain() -> Pagination {
+        return Pagination(nextPage: nextPage, totalPages: totalPages)
+    }
 }

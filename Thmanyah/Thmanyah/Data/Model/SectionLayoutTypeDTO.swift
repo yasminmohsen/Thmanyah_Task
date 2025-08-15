@@ -11,4 +11,14 @@ enum SectionLayoutTypeDTO: String, Codable {
     case bigSquare = "big_square"
     case queue
     case unknown
+    
+    func toDomain() -> SectionLayoutType {
+        switch self {
+        case .square: return .square
+        case .twoLinesGrid: return .twoLinesGrid
+        case .bigSquare: return .bigSquare
+        case .queue: return .queue
+        case .unknown: return .unknown
+        }
+    }
 }

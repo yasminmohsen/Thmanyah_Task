@@ -6,8 +6,7 @@
 //
 import Foundation
 
-struct EpisodeItemDTO: Codable, Identifiable {
-    var id: String { episodeId }
+struct EpisodeItemDTO: Codable {
     let episodeId: String
     let name: String
     let podcastName: String?
@@ -28,5 +27,9 @@ struct EpisodeItemDTO: Codable, Identifiable {
         case avatarURL = "avatar_url"
         case releaseDate = "release_date"
         case audioURL = "audio_url"
+    }
+    
+    func toDomain() -> EpisodeItem {
+        return EpisodeItem(episodeId: episodeId, name: name, podcastName: podcastName, authorName: authorName, description: description, duration: duration, avatarURL: avatarURL, releaseDate: releaseDate, audioURL: audioURL)
     }
 }

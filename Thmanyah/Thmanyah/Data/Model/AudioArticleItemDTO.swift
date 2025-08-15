@@ -5,8 +5,7 @@
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
 
-struct AudioArticleItemDTO: Codable, Identifiable {
-    var id: String { articleId }
+struct AudioArticleItemDTO: Codable {
     let articleId: String
     let name: String
     let authorName: String?
@@ -25,5 +24,9 @@ struct AudioArticleItemDTO: Codable, Identifiable {
         case duration
         case releaseDate = "release_date"
         case score
+    }
+    
+    func toDomain() -> AudioArticleItem {
+        return AudioArticleItem(articleId: articleId, name: name, authorName: authorName, description: description, avatarURL: avatarURL, duration: duration, releaseDate: releaseDate, score: score)
     }
 }

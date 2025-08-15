@@ -5,8 +5,7 @@
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
 
-struct PodcastItemDTO: Codable, Identifiable {
-    var id: String { podcastId }
+struct PodcastItemDTO: Codable {
     let podcastId: String
     let name: String
     let description: String?
@@ -24,5 +23,9 @@ struct PodcastItemDTO: Codable, Identifiable {
         case avatarURL = "avatar_url"
         case episodeCount = "episode_count"
         case duration, language, priority, popularityScore, score
+    }
+    
+    func toDomain() -> PodcastItem {
+        return PodcastItem(podcastId: podcastId, name: name, description: description, avatarURL: avatarURL, episodeCount: episodeCount, duration: duration, language: language, priority: priority, popularityScore: popularityScore, score: score)
     }
 }

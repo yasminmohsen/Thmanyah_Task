@@ -6,6 +6,10 @@
 //
 
 struct HomeSectionsDTO: Codable {
-    let sections: [SectionDTO]
+    let sections: [SectionItemDTO]
     let pagination: PaginationDTO
+    
+    func toDomain() -> HomeSections {
+        return HomeSections(sections: sections.map({$0.toDomain()}), pagination: pagination.toDomain())
+    }
 }
