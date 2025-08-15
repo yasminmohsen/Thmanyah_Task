@@ -11,7 +11,7 @@ protocol INetworkManager {
         _ type: T.Type,
         errorType: E.Type,
         from url: URL,
-        method: String,
+        method: HTTPRequestMethod,
         body: Data?,
         headers: [String: String]
     ) async throws -> T
@@ -27,13 +27,13 @@ final class NetworkManager: INetworkManager {
         _ type: T.Type,
         errorType: E.Type,
         from url: URL,
-        method: String = "GET",
+        method: HTTPRequestMethod = .get,
         body: Data? = nil,
         headers: [String: String] = [:]
     ) async throws -> T {
         
         var request = URLRequest(url: url)
-        request.httpMethod = method
+        request.httpMethod = method.rawValue
         request.httpBody = body
         headers.forEach { request.addValue($0.value, forHTTPHeaderField: $0.key) }
         
