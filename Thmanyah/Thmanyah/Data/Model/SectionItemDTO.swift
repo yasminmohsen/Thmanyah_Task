@@ -11,11 +11,26 @@ struct SectionItemDTO: Codable {
     let type: SectionLayoutTypeDTO
     let contentType: SectionContentTypeDTO
     let order: Int
-    let content: [SectionContentDTO]
-
+    let content: SectionContentDTO
+    
     enum CodingKeys: String, CodingKey {
         case name, type, order, content
         case contentType = "content_type"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        type = try container.decode(SectionLayoutTypeDTO.self, forKey: .type)
+        contentType = try container.decode(SectionContentTypeDTO.self, forKey: .contentType)
+        order = try container.decode(Int.self, forKey: .order)
+        switch contentType {
+        case .podcast: content = .podcasts(try container.decode([PodcastItemDTO].self, forKey: .content))
+        case .episode: content = .episodes(try container.decode([EpisodeItemDTO].self, forKey: .content))
+        case .audioBook: content = .audioBooks(try container.decode([AudioBookItemDTO].self, forKey: .content))
+        case .audioArticle: content = .audioArticles(try container.decode([AudioArticleItemDTO].self, forKey: .content))
+        case .unknown: content = .none
+        }
     }
 }
 
@@ -26,50 +41,19 @@ extension SectionItemDTO {
             type: type.toDomain(),
             contentType: SectionContentType(rawValue: contentType.rawValue) ?? .unknown,
             order: order,
-            content: mapContent()
+            content:  mapContent()
         )
     }
     
-    private func mapContent() -> [SectionContent] {
-        switch contentType {
-        case .podcast:
-            let podcasts = content.compactMap { item -> [PodcastItem]? in
-                if case let .podcasts(dtoArray) = item {
-                    return dtoArray.map { $0.toDomain() }
-                }
-                return nil
-            }.flatMap { $0 }
-            return [.podcasts(podcasts)]
+   private func mapContent() -> SectionContent {
+        switch content {
+        case .podcasts(let podcasts): return .podcasts(podcasts.map({$0.toDomain()}))
+        case .episodes(let episodes): return .episodes(episodes.map({$0.toDomain()}))
+        case .audioBooks(let audioBooks): return .audioBooks(audioBooks.map({$0.toDomain()}))
+        case .audioArticles(let audioArticles): return .audioArticles(audioArticles.map({$0.toDomain()}))
+        case .none: return .none
             
-        case .episode:
-            let episodes = content.compactMap { item -> [EpisodeItem]? in
-                if case let .episodes(dtoArray) = item {
-                    return dtoArray.map { $0.toDomain() }
-                }
-                return nil
-            }.flatMap { $0 }
-            return [.episodes(episodes)]
-            
-        case .audioBook:
-            let books = content.compactMap { item -> [AudioBookItem]? in
-                if case let .audioBooks(dtoArray) = item {
-                    return dtoArray.map { $0.toDomain() }
-                }
-                return nil
-            }.flatMap { $0 }
-            return [.audioBooks(books)]
-            
-        case .audioArticle:
-            let articles = content.compactMap { item -> [AudioArticleItem]? in
-                if case let .audioArticles(dtoArray) = item {
-                    return dtoArray.map { $0.toDomain() }
-                }
-                return nil
-            }.flatMap { $0 }
-            return [.audioArticles(articles)]
-            
-        default:
-            return []
         }
     }
 }
+

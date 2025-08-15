@@ -10,7 +10,7 @@ protocol IHomeRemoteDataSource {
 }
 
 final class HomeRemoteDataSource: IHomeRemoteDataSource {
-    let networkManager: INetworkManager
+    private let networkManager: INetworkManager
     
     init(networkManager: INetworkManager) {
         self.networkManager = networkManager

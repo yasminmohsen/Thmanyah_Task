@@ -10,5 +10,5 @@ struct SectionItem {
     let type: SectionLayoutType
     let contentType: SectionContentType
     let order: Int
-    let content: [SectionContent]
+    let content: SectionContent
 }

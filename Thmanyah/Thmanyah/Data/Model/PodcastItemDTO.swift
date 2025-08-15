@@ -14,7 +14,7 @@ struct PodcastItemDTO: Codable {
     let duration: Int?
     let language: String?
     let priority: Int?
-    let popularityScore: Double?
+    let popularityScore: Int?
     let score: Double?
 
     enum CodingKeys: String, CodingKey {

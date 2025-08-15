@@ -24,7 +24,7 @@ struct Endpoints {
     
     // MARK: - Home Sections
     static func homeSections(page: Int = 1) -> URL {
-        return homeBaseURL.appendingPathComponent("home_sections?page=\(page)")
+        return homeBaseURL.appendingPathComponent("home_sections")
     }
     
     // MARK: - Search

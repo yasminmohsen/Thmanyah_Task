@@ -45,6 +45,10 @@ final class NetworkManager: INetworkManager {
         
         switch httpResponse.statusCode {
         case 200...299:
+            debugPrint(data)
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("JSON Response:\n", jsonString)
+            }
             return try JSONDecoder().decode(T.self, from: data)
             
         default:

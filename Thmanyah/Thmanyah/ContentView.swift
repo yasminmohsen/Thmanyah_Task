@@ -16,6 +16,16 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear {
+            Task {
+                do {
+                  let homeArr = try await HomeRepository(remoteDataSource: HomeRemoteDataSource(networkManager: NetworkManager.shared)).getHomeSections(page: nil)
+                    homeArr.forEach({ print ($0.name)})
+                } catch(let error) {
+                    print("Error -> \(error.localizedDescription)")
+                }
+            }
+        }
     }
 }
 
