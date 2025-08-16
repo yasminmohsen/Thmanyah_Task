@@ -4,6 +4,7 @@
 //
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
+import Foundation
 
 struct AudioBookItemDTO: Codable {
     let audioBookId: String
@@ -28,6 +29,6 @@ struct AudioBookItemDTO: Codable {
     }
     
     func toDomain() -> AudioBookItem {
-        return AudioBookItem(audioBookId: audioBookId, name: name, authorName: authorName, description: description, avatarURL: avatarURL, duration: duration, language: language, releaseDate: releaseDate, score: score)
+        return AudioBookItem(audioBookId: audioBookId, name: name, authorName: authorName, description: description, avatarURL: avatarURL, duration: duration.map({TimeInterval($0)}), language: language, releaseDate: releaseDate, score: score)
     }
 }

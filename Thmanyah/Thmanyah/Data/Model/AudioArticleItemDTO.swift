@@ -4,6 +4,7 @@
 //
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
+import Foundation
 
 struct AudioArticleItemDTO: Codable {
     let articleId: String
@@ -14,6 +15,14 @@ struct AudioArticleItemDTO: Codable {
     let duration: Int?
     let releaseDate: String?
     let score: Double?
+    var relativeDate: String? {
+        let isoFormatter = ISO8601DateFormatter()
+        if let date = isoFormatter.date(from: releaseDate ?? "") {
+            return date.relativeDescription
+            
+        }
+        return nil
+    }
 
     enum CodingKeys: String, CodingKey {
         case articleId = "article_id"
@@ -27,6 +36,6 @@ struct AudioArticleItemDTO: Codable {
     }
     
     func toDomain() -> AudioArticleItem {
-        return AudioArticleItem(articleId: articleId, name: name, authorName: authorName, description: description, avatarURL: avatarURL, duration: duration, releaseDate: releaseDate, score: score)
+        return AudioArticleItem(articleId: articleId, name: name, authorName: authorName, description: description, avatarURL: avatarURL, duration: duration.map({TimeInterval($0)}), releaseDate: releaseDate, score: score)
     }
 }

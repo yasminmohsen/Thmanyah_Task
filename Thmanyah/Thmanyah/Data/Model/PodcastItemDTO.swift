@@ -4,6 +4,7 @@
 //
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
+import Foundation
 
 struct PodcastItemDTO: Codable {
     let podcastId: String
@@ -26,6 +27,6 @@ struct PodcastItemDTO: Codable {
     }
     
     func toDomain() -> PodcastItem {
-        return PodcastItem(podcastId: podcastId, name: name, description: description, avatarURL: avatarURL, episodeCount: episodeCount, duration: duration, language: language, priority: priority, popularityScore: popularityScore, score: score)
+        return PodcastItem(podcastId: podcastId, name: name, description: description, avatarURL: avatarURL, episodeCount: episodeCount, duration: duration.map({TimeInterval($0)}), language: language, priority: priority, popularityScore: popularityScore, score: score)
     }
 }

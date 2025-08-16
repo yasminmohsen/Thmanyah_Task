@@ -4,6 +4,7 @@
 //
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
+import Foundation
 
 struct AudioArticleItem: Identifiable {
     var id: String { articleId }
@@ -12,7 +13,16 @@ struct AudioArticleItem: Identifiable {
     let authorName: String?
     let description: String?
     let avatarURL: String?
-    let duration: Int?
+    let duration: TimeInterval?
     let releaseDate: String?
     let score: Double?
+    var relativeDate: String? {
+        let isoFormatter = ISO8601DateFormatter()
+        if let date = isoFormatter.date(from: releaseDate ?? "") {
+            return date.relativeDescription
+            
+        }
+        return nil
+    }
+    
 }

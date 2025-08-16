@@ -4,6 +4,7 @@
 //
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
+import Foundation
 
 struct PodcastItem: Identifiable {
     var id: String { podcastId }
@@ -12,7 +13,7 @@ struct PodcastItem: Identifiable {
     let description: String?
     let avatarURL: String?
     let episodeCount: Int?
-    let duration: Int?
+    let duration: TimeInterval?
     let language: String?
     let priority: Int?
     let popularityScore: Int?

@@ -7,12 +7,11 @@
 import Foundation
 
 struct UIContentItem: Identifiable {
-    let id: UUID
+    let id: String
     let title: String
     let subtitle: String?
-    let imageURL: URL?
+    let imageURL: String?
     let duration: TimeInterval?
-    let type: SectionContentType
     let releaseDate: String?
-    let episodsCount: Int?
+    let episodesCount: Int?
 }

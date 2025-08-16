@@ -30,6 +30,6 @@ struct EpisodeItemDTO: Codable {
     }
     
     func toDomain() -> EpisodeItem {
-        return EpisodeItem(episodeId: episodeId, name: name, podcastName: podcastName, authorName: authorName, description: description, duration: duration, avatarURL: avatarURL, releaseDate: releaseDate, audioURL: audioURL)
+        return EpisodeItem(episodeId: episodeId, name: name, podcastName: podcastName, authorName: authorName, description: description, duration: duration.map({TimeInterval($0)}), avatarURL: avatarURL, releaseDate: releaseDate, audioURL: audioURL)
     }
 }

@@ -4,6 +4,7 @@
 //
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
+import Foundation
 
 struct EpisodeItem: Identifiable {
     var id: String { episodeId }
@@ -12,8 +13,16 @@ struct EpisodeItem: Identifiable {
     let podcastName: String?
     let authorName: String?
     let description: String?
-    let duration: Int?
+    let duration: TimeInterval?
     let avatarURL: String?
     let releaseDate: String?
     let audioURL: String?
+    var relativeDate: String? {
+        let isoFormatter = ISO8601DateFormatter()
+        if let date = isoFormatter.date(from: releaseDate ?? "") {
+            return date.relativeDescription
+            
+        }
+        return nil
+    }
 }
