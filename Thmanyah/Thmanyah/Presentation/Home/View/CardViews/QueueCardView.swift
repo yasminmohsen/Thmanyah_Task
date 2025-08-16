@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct QueueCardView: View {
-    var contentItem: UIContentItem = UIContentItem(id: "", title: "hello Q", subtitle: "", imageURL: "https://media.npr.org/assets/img/2018/08/03/npr_tbl_podcasttile_sq-284e5618e2b2df0f3158b076d5bc44751e78e1b6.jpg?s=1400&c=66&f=jpg", duration: 299, releaseDate: "", episodesCount: 0)
+    var contentItem: UIContentItem
     var body: some View {
         ZStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 10){
@@ -53,5 +53,5 @@ struct QueueCardView: View {
     }
 }
 #Preview {
-    QueueCardView()
+    QueueCardView(contentItem: UIContentItem(id: "", title: "hello Q", subtitle: "", imageURL: "https://media.npr.org/assets/img/2018/08/03/npr_tbl_podcasttile_sq-284e5618e2b2df0f3158b076d5bc44751e78e1b6.jpg?s=1400&c=66&f=jpg", duration: 299, releaseDate: "", episodesCount: 0))
 }

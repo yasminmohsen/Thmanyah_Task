@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct SquareCardView: View {
-    var contentItem: UIContentItem = UIContentItem(id: "", title: "hello square", subtitle: "", imageURL: "https://bookbrush.com/wp-content/uploads/BookBrushImage-2021-5-11-20-5227-1024x1024.jpg", duration: 10, releaseDate: "", episodesCount: 20)
+    var contentItem: UIContentItem
     var body: some View {
         ZStack(alignment:.bottomLeading) {
             KFImage(URL(string: contentItem.imageURL ?? ""))
@@ -18,7 +18,7 @@ struct SquareCardView: View {
                  .cornerRadius(20)
                  .overlay {
                      RoundedRectangle(cornerRadius: 20)
-                         .fill(.black.opacity(0.5))
+                         .fill(.black.opacity(0.3))
                  }
                 
             VStack(alignment: .leading,spacing: 6) {
@@ -38,5 +38,5 @@ struct SquareCardView: View {
 }
 
 #Preview {
-    SquareCardView()
+    SquareCardView(contentItem: UIContentItem(id: "", title: "hello square", subtitle: "", imageURL: "https://bookbrush.com/wp-content/uploads/BookBrushImage-2021-5-11-20-5227-1024x1024.jpg", duration: 10, releaseDate: "", episodesCount: 20))
 }

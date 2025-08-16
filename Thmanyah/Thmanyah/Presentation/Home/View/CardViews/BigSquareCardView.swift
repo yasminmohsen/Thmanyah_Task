@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct BigSquareCardView: View {
-    var contentItem: UIContentItem = UIContentItem(id: "", title: "hello Big", subtitle: "", imageURL: "https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228", duration: 10, releaseDate: "2h ago", episodesCount: 0)
+    var contentItem: UIContentItem
     var body: some View {
         ZStack {
             HStack {
@@ -54,5 +54,5 @@ struct BigSquareCardView: View {
 }
 
 #Preview {
-    BigSquareCardView()
+    BigSquareCardView(contentItem: UIContentItem(id: "", title: "", subtitle: "", imageURL: "", duration: 0, releaseDate: "", episodesCount: 0))
 }

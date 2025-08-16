@@ -13,35 +13,30 @@ final class HomeViewModel: ObservableObject {
     @Published var errorMessage: String?
     
     private let fetchHomeSectionsUseCase: IFetchHomeSectionsUseCase
-    private var currentPage = 1
-    private var totalPages = 10
     
     init(fetchHomeSectionsUseCase: IFetchHomeSectionsUseCase) {
         self.fetchHomeSectionsUseCase = fetchHomeSectionsUseCase
     }
     
     func loadInitialSections() async {
-        currentPage = 1
-        await loadSections(page: currentPage)
+        isLoading = true
+        let result = await fetchHomeSectionsUseCase.loadInitial()
+        handleResult(result)
     }
     
     func loadMoreSections() async {
-        guard currentPage < totalPages else { return }
-        currentPage += 1
-        await loadSections(page: currentPage)
+        guard fetchHomeSectionsUseCase.hasMorePages else { return }
+        let result = await fetchHomeSectionsUseCase.loadMore()
+        handleResult(result)
     }
     
-    private func loadSections(page: Int) async {
-        isLoading = true
-        let result = await fetchHomeSectionsUseCase.execute(currentSections: sections, page: page)
+    private func handleResult(_ result: Result<HomeSections, APIError>) {
         switch result {
         case .success(let homeSection):
-            totalPages = homeSection.pagination.totalPages
             sections = homeSection.sections
-            isLoading = false
         case .failure(let error):
-            errorMessage = error is APIError ? error.message : error.localizedDescription
-            isLoading = false
+            errorMessage = error.message
         }
+        isLoading = false
     }
 }
