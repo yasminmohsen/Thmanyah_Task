@@ -14,3 +14,11 @@ extension Date {
         return formatter.localizedString(for: self, relativeTo: Date())
     }
 }
+
+extension ISO8601DateFormatter {
+    static let withOrWithoutFractional: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter
+    }()
+}

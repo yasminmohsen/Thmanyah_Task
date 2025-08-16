@@ -34,6 +34,7 @@ struct HomeView: View {
                         
                         switch section.content {
                         case .podcasts(let podcasts):
+                         
                             setUpSections(sectionType: section.type, items: podcasts)
                             
                         case .episodes(let episodes):
@@ -91,12 +92,12 @@ struct HomeView: View {
                 
             } else if sectionType == .twoLinesGrid {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHGrid(rows: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                        ForEach(uiContentItems) { item in
-                               cardView(item:item ,for: sectionType)
+                    LazyHGrid(rows: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+                        ForEach(uiContentItems.indices, id: \.self) { index in
+                               cardView(item:uiContentItems[index] ,for: sectionType)
                         }
                     }
-                }
+               }
                 
             }
             else {

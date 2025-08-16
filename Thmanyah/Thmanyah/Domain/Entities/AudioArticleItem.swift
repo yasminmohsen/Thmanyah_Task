@@ -17,12 +17,7 @@ struct AudioArticleItem: Identifiable {
     let releaseDate: String?
     let score: Double?
     var relativeDate: String? {
-        let isoFormatter = ISO8601DateFormatter()
-        if let date = isoFormatter.date(from: releaseDate ?? "") {
-            return date.relativeDescription
-            
-        }
-        return nil
+        releaseDate?.stringToRelativeDate
     }
     
 }

@@ -22,7 +22,7 @@ struct UIContentItemMapper {
         case let episode as EpisodeItem:
             return UIContentItem(
                 id: episode.id,
-                title: episode.podcastName ?? episode.name,
+                title: episode.name,
                 subtitle: episode.description,
                 imageURL: episode.avatarURL,
                 duration: episode.duration,

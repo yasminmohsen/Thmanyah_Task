@@ -18,11 +18,8 @@ struct EpisodeItem: Identifiable {
     let releaseDate: String?
     let audioURL: String?
     var relativeDate: String? {
-        let isoFormatter = ISO8601DateFormatter()
-        if let date = isoFormatter.date(from: releaseDate ?? "") {
-            return date.relativeDescription
-            
-        }
-        return nil
+        releaseDate?.stringToRelativeDate
     }
 }
+//2023-01-10T08:00:00Z
+// 2024-07-23T08:00:00.000Z
