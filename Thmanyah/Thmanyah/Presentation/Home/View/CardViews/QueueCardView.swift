@@ -49,7 +49,7 @@ struct QueueCardView: View {
                 }
             }
             
-        }.padding(.horizontal, 16)
+        }.padding(.horizontal, 12)
     }
 }
 #Preview {

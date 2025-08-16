@@ -48,7 +48,7 @@ struct BigSquareCardView: View {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(Color(R.color.cardBackground))
             }
-        }.padding(.horizontal, 16)
+        }.padding(.horizontal, 12)
       
     }
 }
