@@ -8,7 +8,7 @@ import Foundation
 
 extension TimeInterval {
     var formattedDuration: String {
-        guard self > 0 else { return "0 min" }
+        guard self > 0 else { return " " }
         let totalMinutes = Int(self / 60)
         let hours = totalMinutes / 60
         let minutes = totalMinutes % 60

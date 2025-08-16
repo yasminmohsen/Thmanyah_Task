@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6CBD6D6D2E50AB9600F302EB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBD6D6C2E50AB9600F302EB /* Kingfisher */; };
+		6CBD6D7C2E50BAD000F302EB /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBD6D7B2E50BAD000F302EB /* RswiftLibrary */; };
+		6CBD6D7E2E50BAD000F302EB /* rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBD6D7D2E50BAD000F302EB /* rswift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CBD6D6D2E50AB9600F302EB /* Kingfisher in Frameworks */,
+				6CBD6D7C2E50BAD000F302EB /* RswiftLibrary in Frameworks */,
+				6CBD6D7E2E50BAD000F302EB /* rswift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6CBD6D802E50BAE500F302EB /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6CE277072E4DF3EA00B1EADB /* Thmanyah */,
@@ -118,6 +123,8 @@
 			name = Thmanyah;
 			packageProductDependencies = (
 				6CBD6D6C2E50AB9600F302EB /* Kingfisher */,
+				6CBD6D7B2E50BAD000F302EB /* RswiftLibrary */,
+				6CBD6D7D2E50BAD000F302EB /* rswift */,
 			);
 			productName = Thmanyah;
 			productReference = 6CE277052E4DF3EA00B1EADB /* Thmanyah.app */;
@@ -203,6 +210,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6CBD6D6B2E50AB9600F302EB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6CBD6D7A2E50BAD000F302EB /* XCRemoteSwiftPackageReference "R.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6CE277062E4DF3EA00B1EADB /* Products */;
@@ -265,6 +273,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6CBD6D802E50BAE500F302EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 6CBD6D7F2E50BAE500F302EB /* RswiftGeneratePublicResources */;
+		};
 		6CE277142E4DF3ED00B1EADB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6CE277042E4DF3EA00B1EADB /* Thmanyah */;
@@ -577,6 +589,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		6CBD6D7A2E50BAD000F302EB /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -584,6 +604,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6CBD6D6B2E50AB9600F302EB /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		6CBD6D7B2E50BAD000F302EB /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CBD6D7A2E50BAD000F302EB /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = RswiftLibrary;
+		};
+		6CBD6D7D2E50BAD000F302EB /* rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CBD6D7A2E50BAD000F302EB /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = rswift;
+		};
+		6CBD6D7F2E50BAE500F302EB /* RswiftGeneratePublicResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CBD6D7A2E50BAD000F302EB /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = "plugin:RswiftGeneratePublicResources";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
