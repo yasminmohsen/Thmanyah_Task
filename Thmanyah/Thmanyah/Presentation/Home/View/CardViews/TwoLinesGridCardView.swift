@@ -51,8 +51,7 @@ struct TwoLinesGridCardView: View {
                
             }
          
-        }.padding(.horizontal, 12)
-
+        }
     }
 }
 

@@ -33,7 +33,7 @@ struct SquareCardView: View {
                         .foregroundStyle(.white)
                 }
             }.padding(.all, 12)
-        }.padding(.horizontal, 12)
+        }
     }
 }
 

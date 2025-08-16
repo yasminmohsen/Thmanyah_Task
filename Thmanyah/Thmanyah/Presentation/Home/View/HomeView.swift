@@ -24,40 +24,44 @@ struct HomeView: View {
     )
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            LazyVStack(alignment: .leading, spacing: 20) {
-                ForEach(viewModel.sections, id: \.id) { section in
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(section.name)
-                            .font(.headline)
-                            .padding(.horizontal)
-                        
-                        switch section.content {
-                        case .podcasts(let podcasts):
-                         
-                            setUpSections(sectionType: section.type, items: podcasts)
+        ZStack(alignment: .leading) {
+            ScrollView(showsIndicators: false) {
+                LazyVStack(alignment: .leading, spacing: 20) {
+                    ForEach(viewModel.sections, id: \.id) { section in
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(section.name)
+                                .font(.headline)
+                                .frame(alignment: .leading)
+                                .padding(.top, 20)
+                                .padding(.bottom, 12)
                             
-                        case .episodes(let episodes):
-
-                            setUpSections(sectionType: section.type, items: episodes)
-                            
-                        case .audioBooks(let books):
-
-                            setUpSections(sectionType: section.type, items: books)
-                            
-                        case .audioArticles(let articles):
-                            setUpSections(sectionType: section.type, items: articles)
-                        case .none:
-                            Text("No content")
-                                .foregroundColor(.secondary)
+                            switch section.content {
+                            case .podcasts(let podcasts):
+                                
+                                setUpSections(sectionType: section.type, items: podcasts)
+                                
+                            case .episodes(let episodes):
+                                
+                                setUpSections(sectionType: section.type, items: episodes)
+                                
+                            case .audioBooks(let books):
+                                
+                                setUpSections(sectionType: section.type, items: books)
+                                
+                            case .audioArticles(let articles):
+                                setUpSections(sectionType: section.type, items: articles)
+                            case .none:
+                                Text("No content")
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }
             }
-        }.padding(.all, 8)
-            .task {
-                await viewModel.loadInitialSections()
-            }
+                .task {
+                    await viewModel.loadInitialSections()
+                }
+        }.padding(.all, 16)
     }
     
     @ViewBuilder
@@ -82,27 +86,25 @@ struct HomeView: View {
         let uiContentItems = items.map{UIContentItemMapper.map($0)}
         Group {
             if sectionType == .bigSquare {
-                 TabView {
-                    ForEach(uiContentItems) { item in
-                        cardView(item:item ,for: sectionType)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: [GridItem(.flexible())], spacing: 12) {
+                        ForEach(uiContentItems.indices, id: \.self) { index in
+                            cardView(item: uiContentItems[index], for: .bigSquare)
+                        }
                     }
                 }
-                .frame(height: 200)
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
             } else if sectionType == .twoLinesGrid {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHGrid(rows: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                         ForEach(uiContentItems.indices, id: \.self) { index in
-                               cardView(item:uiContentItems[index] ,for: sectionType)
+                            cardView(item:uiContentItems[index] ,for: sectionType)
                         }
                     }
-               }
-                
+                }
             }
             else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 0) {
+                    HStack(spacing: 12) {
                         ForEach(uiContentItems) {item in
                             cardView(item:item ,for: sectionType)
                         }
@@ -110,7 +112,7 @@ struct HomeView: View {
                 }
                 
             }
-
+            
         }
     }
 }
