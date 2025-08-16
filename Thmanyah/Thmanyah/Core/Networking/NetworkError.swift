@@ -12,7 +12,7 @@ enum NetworkError: Error {
     case unexpectedStatusCode(Int)
 }
 
-struct APIError: Codable {
+struct APIError: Codable, Error {
     let message: String
     let code: Int
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IHomeRepository {
-    func getHomeSections(page: Int?) async throws -> [SectionItem]
+    func getHomeSections(page: Int?) async throws -> HomeSections
 }
 
 final class HomeRepository: IHomeRepository {
@@ -18,10 +18,8 @@ final class HomeRepository: IHomeRepository {
         self.remoteDataSource = remoteDataSource
     }
     
-    func getHomeSections(page: Int?) async throws -> [SectionItem] {
-        let sectionsDTO = try await remoteDataSource.fetchHomeSections(page: page)
-        print(sectionsDTO)
-        let arr = sectionsDTO.sections.map { $0.toDomain() }
-        return arr
+    func getHomeSections(page: Int?) async throws -> HomeSections {
+        let homeSectionsDTO = try await remoteDataSource.fetchHomeSections(page: page)
+       return homeSectionsDTO.toDomain()
     }
 }
