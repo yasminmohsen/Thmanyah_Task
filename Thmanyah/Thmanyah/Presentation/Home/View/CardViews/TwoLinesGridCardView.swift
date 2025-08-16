@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TwoLinesGridCardView: View {
+    var contentItem: UIContentItem = UIContentItem(id: "", title: "hello two lines", subtitle: "", imageURL: "", duration: 0, releaseDate: "", episodesCount: 0)
     var body: some View {
         ZStack {
             HStack {
@@ -20,7 +21,7 @@ struct TwoLinesGridCardView: View {
                      }
                 VStack {
                     Text("Time")
-                    Text("name")
+                    Text("\(contentItem.title)")
                    RoundedRectangle(cornerRadius: 20)
                         .frame(width: 70, height: 30)
                 }

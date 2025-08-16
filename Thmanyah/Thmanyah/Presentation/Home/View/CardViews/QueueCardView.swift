@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QueueCardView: View {
+    var contentItem: UIContentItem = UIContentItem(id: "", title: "hello Q", subtitle: "", imageURL: "", duration: 10, releaseDate: "", episodesCount: 0)
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
@@ -16,7 +17,7 @@ struct QueueCardView: View {
                  .frame(maxWidth: .infinity)
                  .padding(.all, 16)
                  .overlay {
-                     Text("Queue")
+                     Text("\(contentItem.title)")
                  }
         }
 
