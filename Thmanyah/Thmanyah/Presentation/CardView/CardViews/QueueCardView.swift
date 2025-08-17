@@ -19,28 +19,14 @@ struct QueueCardView: View {
                     .cornerRadius(12)
                 
                 Text("\(contentItem.title)")
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: 12, weight: .semibold))
                     .frame(width: 110, alignment: .leading)
                     .lineLimit(1)
                     .truncationMode(.tail)
                 HStack(spacing: 10) {
-                    Button {} label: {
-                        HStack {
-                            Image(systemName: "play.fill")
-                                .resizable()
-                                .frame(width: 10, height: 10)
-                                .padding([.leading, .vertical], 8)
-                                Text("\(contentItem.duration?.formattedDuration ?? "")")
-                                    .font(.system(size: 12, weight: .semibold))
-                                    .padding([.trailing, .vertical], 8)
-                                    .multilineTextAlignment(.leading)
-                        }.background {
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color(R.color.cardBackground))
-                        }
-                    }.buttonStyle(.plain)
+                  DurationButtonView(duration: contentItem.duration?.formattedDuration ?? "")
                     if let date = contentItem.releaseDate {
-                        Text("\(contentItem.releaseDate ?? "")")
+                        Text("\(date)")
                             .font(.system(size: 12, weight: .semibold))
                             .multilineTextAlignment(.leading)
                             .foregroundStyle(Color.gray)

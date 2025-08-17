@@ -30,25 +30,10 @@ struct TwoLinesGridCardView: View {
                         .lineLimit(2)
                         .frame(maxWidth: 200, alignment: .leading)
                         .padding(.bottom,10)
-                    Button {} label: {
-                        HStack {
-                            Image(systemName: "play.fill")
-                                .resizable()
-                                .frame(width: 10, height: 10)
-                                .padding([.leading, .vertical], 8)
-                                Text("\(contentItem.duration?.formattedDuration ?? "")")
-                                    .font(.system(size: 12, weight: .semibold))
-                                    .padding([.trailing, .vertical], 8)
-                                    .multilineTextAlignment(.leading)
-                        }.background {
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color(R.color.cardBackground))
-                        }
-                    }.buttonStyle(.plain)
+                    DurationButtonView(duration: contentItem.duration?.formattedDuration ?? "")
                 }
               
                 Spacer()
-               
             }
          
         }

@@ -39,10 +39,12 @@ struct BigSquareCardView: View {
                 Spacer()
                 VStack(alignment: .trailing) {
                     Spacer()
-                    Image(systemName: "play.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30, alignment: .bottomTrailing)
-                        .padding(.trailing, 24)
+                    Button { } label: {
+                        Image(systemName: "play.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30, alignment: .bottomTrailing)
+                            .padding(.trailing, 24)
+                    }.buttonStyle(.plain)
                 }.frame(width: 30, height: 100)
             }.background {
                 RoundedRectangle(cornerRadius: 12)
