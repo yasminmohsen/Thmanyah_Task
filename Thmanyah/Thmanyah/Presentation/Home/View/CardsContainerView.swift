@@ -64,7 +64,7 @@ struct CardsContainerView: View {
         case .twoLinesGrid:
             TwoLinesGridCardView(contentItem: item)
         case .unknown:
-            EmptyView()
+            QueueCardView(contentItem: item)
         }
     }
     

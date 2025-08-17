@@ -29,6 +29,6 @@ struct Endpoints {
     
     // MARK: - Search
     static func search(with item: String) -> URL {
-        return searchBaseBaseURL.appendingPathComponent("\(item)")
+        return searchBaseBaseURL
     }
 }

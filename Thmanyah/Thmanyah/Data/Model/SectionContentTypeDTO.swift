@@ -11,4 +11,11 @@ enum SectionContentTypeDTO: String, Codable {
     case audioBook = "audio_book"
     case audioArticle = "audio_article"
     case unknown
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let raw = (try? container.decode(String.self)) ?? ""
+        
+        self = SectionContentTypeDTO(rawValue: raw) ?? .unknown
+    }
 }

@@ -10,7 +10,7 @@ struct SectionItemDTO: Codable {
     let name: String
     let type: SectionLayoutTypeDTO
     let contentType: SectionContentTypeDTO
-    let order: Int
+    @FlexibleCodable<Int> var order: Int?
     let content: SectionContentDTO
     
     enum CodingKeys: String, CodingKey {
@@ -23,24 +23,24 @@ struct SectionItemDTO: Codable {
         name = try container.decode(String.self, forKey: .name)
         type = try container.decode(SectionLayoutTypeDTO.self, forKey: .type)
         contentType = try container.decode(SectionContentTypeDTO.self, forKey: .contentType)
-        order = try container.decode(Int.self, forKey: .order)
+        _order = try container.decode(FlexibleCodable<Int>.self, forKey: .order)
         switch contentType {
         case .podcast: content = .podcasts(try container.decode([PodcastItemDTO].self, forKey: .content))
         case .episode: content = .episodes(try container.decode([EpisodeItemDTO].self, forKey: .content))
         case .audioBook: content = .audioBooks(try container.decode([AudioBookItemDTO].self, forKey: .content))
         case .audioArticle: content = .audioArticles(try container.decode([AudioArticleItemDTO].self, forKey: .content))
-        case .unknown: content = .none
+        case .unknown:
+            content = try container.decode(SectionContentDTO.self, forKey: .content)
         }
     }
 }
-
 extension SectionItemDTO {
     func toDomain() -> SectionItem {
         return SectionItem(
             name: name,
             type: type.toDomain(),
             contentType: SectionContentType(rawValue: contentType.rawValue) ?? .unknown,
-            order: order,
+            order: order ?? 0,
             content:  mapContent()
         )
     }

@@ -11,12 +11,12 @@ struct PodcastItemDTO: Codable {
     let name: String
     let description: String?
     let avatarURL: String?
-    let episodeCount: Int?
-    let duration: Int?
+    @FlexibleCodable<Int> var episodeCount: Int?
+    @FlexibleCodable<Int> var duration: Int?
     let language: String?
-    let priority: Int?
-    let popularityScore: Int?
-    let score: Double?
+    @FlexibleCodable<Int> var priority: Int?
+    @FlexibleCodable<Int> var popularityScore: Int?
+    @FlexibleCodable<Double> var score: Double?
 
     enum CodingKeys: String, CodingKey {
         case podcastId = "podcast_id"
