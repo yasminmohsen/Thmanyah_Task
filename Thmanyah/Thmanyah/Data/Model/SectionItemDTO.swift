@@ -36,9 +36,16 @@ struct SectionItemDTO: Codable {
 }
 extension SectionItemDTO {
     func toDomain() -> SectionItem {
+        let layout: SectionLayoutType
+              if type == .unknown {
+                  let all: [SectionLayoutType] = [.square, .bigSquare, .queue, .twoLinesGrid]
+                  layout = all.randomElement() ?? .square
+              } else {
+                  layout = type.toDomain()
+              }
         return SectionItem(
             name: name,
-            type: type.toDomain(),
+            type: layout,
             contentType: SectionContentType(rawValue: contentType.rawValue) ?? .unknown,
             order: order ?? 0,
             content:  mapContent()

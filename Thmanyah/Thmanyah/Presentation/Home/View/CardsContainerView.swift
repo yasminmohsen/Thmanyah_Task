@@ -44,7 +44,7 @@ struct CardsContainerView: View {
                         }
                     }.task {
                         if section.id == sections.last?.id {
-                             await loadMoreSections() 
+                            await loadMoreSections()
                         }
                     }
                 }
@@ -64,7 +64,7 @@ struct CardsContainerView: View {
         case .twoLinesGrid:
             TwoLinesGridCardView(contentItem: item)
         case .unknown:
-            QueueCardView(contentItem: item)
+          EmptyView()
         }
     }
     
