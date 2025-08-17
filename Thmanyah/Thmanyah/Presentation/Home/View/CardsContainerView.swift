@@ -49,7 +49,7 @@ struct CardsContainerView: View {
                     }
                 }
             }
-        }.padding(.all, 16)
+        }.padding([.horizontal, .top], 16)
     }
     
     @ViewBuilder
