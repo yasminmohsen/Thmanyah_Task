@@ -19,5 +19,4 @@ struct AudioArticleItem: Identifiable {
     var relativeDate: String? {
         releaseDate?.stringToRelativeDate
     }
-    
 }

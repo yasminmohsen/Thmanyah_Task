@@ -20,6 +20,7 @@ final class SearchRepository: ISearchRepository {
     
     func getHomeSections(query: String) async throws -> SearchSections {
         let searchSectionsDTO = try await remoteDataSource.fetchSearchSections(query: query)
-       return searchSectionsDTO.toDomain()
+        
+        return searchSectionsDTO.toDomain()
     }
 }

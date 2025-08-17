@@ -7,14 +7,14 @@
 
 struct AnyCodable: Codable {
     let value: Any
-
+    
     init<T>(_ value: T?) {
         self.value = value ?? ()
     }
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-
+        
         if let intVal = try? container.decode(Int.self) {
             value = intVal
         } else if let doubleVal = try? container.decode(Double.self) {
@@ -31,10 +31,10 @@ struct AnyCodable: Codable {
             value = ()
         }
     }
-
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-
+        
         switch value {
         case let intVal as Int:
             try container.encode(intVal)

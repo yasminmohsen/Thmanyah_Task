@@ -20,6 +20,7 @@ final class HomeRepository: IHomeRepository {
     
     func getHomeSections(page: Int?) async throws -> HomeSections {
         let homeSectionsDTO = try await remoteDataSource.fetchHomeSections(page: page)
-       return homeSectionsDTO.toDomain()
+        
+        return homeSectionsDTO.toDomain()
     }
 }

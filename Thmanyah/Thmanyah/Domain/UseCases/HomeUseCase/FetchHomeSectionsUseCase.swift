@@ -50,8 +50,7 @@ final class FetchHomeSectionsUseCase: IFetchHomeSectionsUseCase {
             
             let updated = HomeSections(
                 sections: allSections,
-                pagination: homeSections.pagination
-            )
+                pagination: homeSections.pagination)
             return .success(updated)
         } catch {
             return .failure(error as? APIError ?? APIError(message: error.localizedDescription, code: 500))

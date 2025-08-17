@@ -19,6 +19,7 @@ final class FetchSearchSectionsUseCase: IFetchSearchSectionsUseCase {
     func execute(query: String) async -> Result<SearchSections, APIError> {
         do {
             let searchSections = try await searchRepo.getHomeSections(query: query)
+            
             return .success(searchSections)
         } catch(let error) {
             return .failure(error as? APIError ?? APIError(message: error.localizedDescription, code: 500))

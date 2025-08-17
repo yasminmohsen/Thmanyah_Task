@@ -9,10 +9,13 @@ import SwiftUI
 import Combine
 
 struct SearchView: View {
+    //MARK: - ObservedObjects
     @ObservedObject private(set) var viewModel: SearchViewModel
     
+    //MARK: - Body
     var body: some View {
         VStack {
+            //Search Text Field
             HStack {
                 Image(systemName: "magnifyingglass")
                 TextField("Search...", text: $viewModel.query)
@@ -23,7 +26,7 @@ struct SearchView: View {
             .background(Color(.systemGray6))
             .cornerRadius(12)
             .padding(.horizontal)
-            
+            //Section Content
             if viewModel.isLoading {
                 ProgressView("Searching...")
                     .padding(.top, 40)

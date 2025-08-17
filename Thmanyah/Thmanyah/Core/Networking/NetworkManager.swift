@@ -18,11 +18,11 @@ protocol INetworkManager {
 }
 
 final class NetworkManager: INetworkManager {
-    
     static let shared: NetworkManager = NetworkManager()
     
     private init() {}
     
+    //MARK: - Generic Request Function
     func request<T: Decodable, E: Decodable>(
         _ type: T.Type,
         errorType: E.Type,
@@ -44,14 +44,13 @@ final class NetworkManager: INetworkManager {
         }
         
         switch httpResponse.statusCode {
-        case 200...299:
-            debugPrint(data)
+        case 200...299: // Success
             if let jsonString = String(data: data, encoding: .utf8) {
                 print("JSON Response:\n", jsonString)
             }
             return try JSONDecoder().decode(T.self, from: data)
             
-        default:
+        default: // Failure
             if let errorModel = try? JSONDecoder().decode(E.self, from: data) {
                 throw NetworkError.apiError(errorModel)
             } else {

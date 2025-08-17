@@ -6,6 +6,7 @@
 //
 
 struct UIContentItemMapper {
+    
     static func map(_ item: any Identifiable) -> UIContentItem {
         switch item {
         case let podcast as PodcastItem:

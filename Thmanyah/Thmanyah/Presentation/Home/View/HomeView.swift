@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    //MARK: - ObservedObjects
     @ObservedObject private(set) var viewModel: HomeViewModel
     
+    //MARK: - Body
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 0) {
             // Custom header
             HStack(alignment: .center) {
@@ -26,16 +27,15 @@ struct HomeView: View {
                     .padding(.bottom, 16)
                 
             } .padding(.horizontal, 16)
-              .padding(.top, 30)
-              .background(Color(R.color.lightOrange).opacity(0.3))
-            
+                .padding(.top, 30)
+                .background(Color(R.color.lightOrange).opacity(0.3))
+            //Sections Content
             if !viewModel.isLoading {
                 CardsContainerView(sections: viewModel.sections) {
                     await viewModel.loadMoreSections()
                 }
-
             } else {
-               LoadingStateHomeView()
+                LoadingStateHomeView()
             }
         }.task {
             await viewModel.loadInitialSections()
@@ -47,9 +47,5 @@ struct HomeView: View {
     HomeView(viewModel: HomeViewModel(
         fetchHomeSectionsUseCase: FetchHomeSectionsUseCase(
             homeRepo: HomeRepository(
-                remoteDataSource: HomeRemoteDataSource(networkManager: NetworkManager.shared)
-            )
-        )
-    )
-)
+                remoteDataSource: HomeRemoteDataSource(networkManager: NetworkManager.shared)))))
 }

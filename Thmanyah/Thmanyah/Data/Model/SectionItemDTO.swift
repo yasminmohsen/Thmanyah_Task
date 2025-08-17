@@ -10,8 +10,9 @@ struct SectionItemDTO: Codable {
     let name: String
     let type: SectionLayoutTypeDTO
     let contentType: SectionContentTypeDTO
-    @FlexibleCodable<Int> var order: Int?
     let content: SectionContentDTO
+    
+    @FlexibleCodable<Int> var order: Int?
     
     enum CodingKeys: String, CodingKey {
         case name, type, order, content
@@ -20,10 +21,12 @@ struct SectionItemDTO: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
         name = try container.decode(String.self, forKey: .name)
         type = try container.decode(SectionLayoutTypeDTO.self, forKey: .type)
         contentType = try container.decode(SectionContentTypeDTO.self, forKey: .contentType)
         _order = try container.decode(FlexibleCodable<Int>.self, forKey: .order)
+        
         switch contentType {
         case .podcast: content = .podcasts(try container.decode([PodcastItemDTO].self, forKey: .content))
         case .episode: content = .episodes(try container.decode([EpisodeItemDTO].self, forKey: .content))
@@ -37,12 +40,13 @@ struct SectionItemDTO: Codable {
 extension SectionItemDTO {
     func toDomain() -> SectionItem {
         let layout: SectionLayoutType
-              if type == .unknown {
-                  let all: [SectionLayoutType] = [.square, .bigSquare, .queue, .twoLinesGrid]
-                  layout = all.randomElement() ?? .square
-              } else {
-                  layout = type.toDomain()
-              }
+        // To detect unknown type and select random layout for it
+        if type == .unknown {
+            let all: [SectionLayoutType] = [.square, .bigSquare, .queue, .twoLinesGrid]
+            layout = all.randomElement() ?? .square
+        } else {
+            layout = type.toDomain()
+        }
         return SectionItem(
             name: name,
             type: layout,
@@ -52,7 +56,7 @@ extension SectionItemDTO {
         )
     }
     
-   private func mapContent() -> SectionContent {
+    private func mapContent() -> SectionContent {
         switch content {
         case .podcasts(let podcasts): return .podcasts(podcasts.map({$0.toDomain()}))
         case .episodes(let episodes): return .episodes(episodes.map({$0.toDomain()}))

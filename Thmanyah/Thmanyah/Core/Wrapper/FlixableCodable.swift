@@ -7,6 +7,7 @@
 
 @propertyWrapper
 struct FlexibleCodable<T: LosslessStringConvertible & Codable>: Codable {
+    
     var wrappedValue: T?
 
     init(wrappedValue: T?) {

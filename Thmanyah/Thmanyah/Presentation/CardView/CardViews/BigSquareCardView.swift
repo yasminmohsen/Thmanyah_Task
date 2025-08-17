@@ -10,6 +10,7 @@ import Kingfisher
 
 struct BigSquareCardView: View {
     var contentItem: UIContentItem
+    
     var body: some View {
         ZStack {
             HStack {
@@ -19,10 +20,12 @@ struct BigSquareCardView: View {
                         .resizable()
                         .frame(width: 100, height: 100)
                         .cornerRadius(12)
+                    //Title Text
                     VStack(alignment: .leading, spacing:14) {
                         Text("\(contentItem.title)")
                             .font(.system(size: 16, weight: .semibold))
                             .multilineTextAlignment(.leading)
+                        //Duration + Date box
                         HStack(spacing: 10) {
                             Text("-\(contentItem.duration?.formattedDuration ?? "")")
                                 .font(.system(size: 12, weight: .semibold))
@@ -39,6 +42,7 @@ struct BigSquareCardView: View {
                 Spacer()
                 VStack(alignment: .trailing) {
                     Spacer()
+                    //Play Button
                     Button { } label: {
                         Image(systemName: "play.circle.fill")
                             .resizable()
@@ -51,7 +55,6 @@ struct BigSquareCardView: View {
                     .fill(Color(R.color.cardBackground))
             }.frame(width: UIScreen.main.bounds.width - 32)
         }
-      
     }
 }
 

@@ -16,7 +16,7 @@ struct EpisodeItemDTO: Codable {
     let avatarURL: String?
     let releaseDate: String?
     let audioURL: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case episodeId = "episode_id"
         case name

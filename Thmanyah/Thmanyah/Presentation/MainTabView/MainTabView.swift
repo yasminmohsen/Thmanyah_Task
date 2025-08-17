@@ -16,14 +16,14 @@ struct MainTabView: View {
                         remoteDataSource: HomeRemoteDataSource(networkManager: NetworkManager.shared))))
             )
             .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
+                Label("Home", systemImage: "house.fill")
+            }
             
             SearchView(viewModel: SearchViewModel(fetchSearchSectionsUseCase: FetchSearchSectionsUseCase(searchRepo: SearchRepository(remoteDataSource: SearchRemoteDataSource(networkManager: NetworkManager.shared))))
             )
-                .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
-                }
+            .tabItem {
+                Label("Search", systemImage: "magnifyingglass")
+            }
         }
     }
 }

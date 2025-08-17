@@ -4,17 +4,19 @@
 //
 //  Created by Yasmin Mohsen on 15/08/2025.
 //
-
 import Foundation
 
 struct Endpoints {
     
+    // MARK: - Home URL
     private static var homeBaseURL: URL {
         guard let url = URL(string: "https://api-v2-b2sit6oh3a-uc.a.run.app") else {
             fatalError("Invalid base URL")
         }
         return url
     }
+    
+    // MARK: - Search URL
     private static var searchBaseBaseURL: URL {
         guard let url = URL(string: "https://mock.apidog.com/m1/735111-711675-default/search") else {
             fatalError("Invalid base URL")

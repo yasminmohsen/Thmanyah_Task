@@ -37,7 +37,7 @@ final class SearchViewModelTests: XCTestCase {
         
         searchViewModel.query = "podcast"
         
-        try? await Task.sleep(nanoseconds: 200_000_000)
+        try? await Task.sleep(nanoseconds: 300_000_000)
         
         XCTAssertNotEqual(searchViewModel.sections.count, 1)
         XCTAssertEqual(searchViewModel.errorMessage, "Network Error")

@@ -16,6 +16,6 @@ enum SectionContentTypeDTO: String, Codable {
         let container = try decoder.singleValueContainer()
         let raw = (try? container.decode(String.self)) ?? ""
         
-        self = SectionContentTypeDTO(rawValue: raw) ?? .unknown
+        self = SectionContentTypeDTO(rawValue: raw) ?? .unknown // To handle different strings
     }
 }

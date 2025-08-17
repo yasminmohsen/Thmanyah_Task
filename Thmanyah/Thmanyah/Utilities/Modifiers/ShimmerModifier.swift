@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShimmerModifier: ViewModifier {
     @Binding var opacity: Double
+    
     func body(content: Content) -> some View {
         content
             .opacity(opacity)

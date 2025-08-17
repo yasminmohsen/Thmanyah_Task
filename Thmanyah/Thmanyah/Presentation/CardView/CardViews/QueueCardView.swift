@@ -10,31 +10,32 @@ import Kingfisher
 
 struct QueueCardView: View {
     var contentItem: UIContentItem
+    
     var body: some View {
         ZStack(alignment: .leading) {
-            VStack(alignment: .leading, spacing: 10){
+            VStack(alignment: .leading, spacing: 10) {
+                // Avatar Image
                 KFImage(URL(string: contentItem.imageURL ?? ""))
                     .resizable()
                     .frame(width:110, height: 110)
                     .cornerRadius(12)
-                
+                // Title Text
                 Text("\(contentItem.title)")
                     .font(.system(size: 12, weight: .semibold))
                     .frame(width: 110, alignment: .leading)
                     .lineLimit(1)
                     .truncationMode(.tail)
+                //Duration Button
                 HStack(spacing: 10) {
-                  DurationButtonView(duration: contentItem.duration?.formattedDuration ?? "")
+                    DurationButtonView(duration: contentItem.duration?.formattedDuration ?? "")
                     if let date = contentItem.releaseDate {
                         Text("\(date)")
                             .font(.system(size: 12, weight: .semibold))
                             .multilineTextAlignment(.leading)
                             .foregroundStyle(Color.gray)
                     }
-                   
                 }
             }
-            
         }
     }
 }

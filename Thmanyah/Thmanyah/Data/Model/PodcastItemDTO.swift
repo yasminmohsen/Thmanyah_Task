@@ -11,13 +11,15 @@ struct PodcastItemDTO: Codable {
     let name: String
     let description: String?
     let avatarURL: String?
+    let language: String?
+    
+    // For Search API, all podcast properties are returning as string
     @FlexibleCodable<Int> var episodeCount: Int?
     @FlexibleCodable<Int> var duration: Int?
-    let language: String?
     @FlexibleCodable<Int> var priority: Int?
     @FlexibleCodable<Int> var popularityScore: Int?
     @FlexibleCodable<Double> var score: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case podcastId = "podcast_id"
         case name, description

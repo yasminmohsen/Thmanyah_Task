@@ -19,11 +19,10 @@ struct AudioArticleItemDTO: Codable {
         let isoFormatter = ISO8601DateFormatter()
         if let date = isoFormatter.date(from: releaseDate ?? "") {
             return date.relativeDescription
-            
         }
         return nil
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case articleId = "article_id"
         case name

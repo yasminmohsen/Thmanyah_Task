@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct LoadingStateHomeView: View {
+    //MARK: - Properties
     @State private var opacity: Double = 0.2
     
+    //MARK: - Body
     var body: some View {
         ZStack (alignment: .topLeading) {
             VStack(alignment: .leading, spacing: 0) {
@@ -47,7 +49,6 @@ struct LoadingStateHomeView: View {
                             .frame(width:80, height: 80)
                             .setShimmerEffect(opacity: $opacity)
                     }
-                    
                 }.frame(width:80, height: 80)
                 
                 RoundedRectangle(cornerRadius: 12)
@@ -69,6 +70,7 @@ struct LoadingStateHomeView: View {
         }
     }
 }
+
 #Preview {
     LoadingStateHomeView()
 }

@@ -7,10 +7,11 @@
 
 struct SearchSectionDTO: Decodable {
     let sections: [SectionItemDTO]
-   
+    
     enum CodingKeys: String, CodingKey {
         case sections = "sections"
     }
+    
     func toDomain() -> SearchSections {
         return SearchSections(sections: sections.map({$0.toDomain()}))
     }

@@ -10,8 +10,8 @@ struct HomeSectionsDTO: Decodable {
     var pagination: PaginationDTO?
     
     enum CodingKeys: String, CodingKey {
-        case pagination = "pagination"
         case sections = "sections"
+        case pagination = "pagination"
     }
     func toDomain() -> HomeSections {
         return HomeSections(sections: sections.map({$0.toDomain()}), pagination: pagination?.toDomain() ?? Pagination(nextPage: "0", totalPages: 0))

@@ -10,18 +10,25 @@ import Foundation
 
 @MainActor
 class SearchViewModel: ObservableObject {
+    //MARK: - Publishers
     @Published var query: String = ""
     @Published var sections: [SectionItem] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
-    private var cancellables = Set<AnyCancellable>()
+    //MARK: - Properties
+    private var subscriptions = Set<AnyCancellable>()
     private let fetchSearchSectionsUseCase: IFetchSearchSectionsUseCase
     
+    //MARK: - Initilaizer
     init(fetchSearchSectionsUseCase: IFetchSearchSectionsUseCase) {
-        
         self.fetchSearchSectionsUseCase = fetchSearchSectionsUseCase
         
+        bindQuery()
+    }
+    
+    //MARK: - Functions
+    private func bindQuery() {
         $query
             .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
             .removeDuplicates()
@@ -32,7 +39,7 @@ class SearchViewModel: ObservableObject {
                     await self.search(query: text)
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &subscriptions)
     }
     
     func search(query: String) async {
@@ -41,7 +48,7 @@ class SearchViewModel: ObservableObject {
             return
         }
         isLoading = true
-      
+        
         let result =  await fetchSearchSectionsUseCase.execute(query: query)
         switch result {
         case .success(let searchSecs):

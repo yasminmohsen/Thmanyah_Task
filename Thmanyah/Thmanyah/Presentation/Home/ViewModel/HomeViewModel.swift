@@ -8,16 +8,20 @@ import Combine
 
 @MainActor
 final class HomeViewModel: ObservableObject {
+    //MARK: - Publishers
     @Published var sections: [SectionItem] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
     
+    //MARK: - Properties
     private let fetchHomeSectionsUseCase: IFetchHomeSectionsUseCase
     
+    //MARK: - Initilaizer
     init(fetchHomeSectionsUseCase: IFetchHomeSectionsUseCase) {
         self.fetchHomeSectionsUseCase = fetchHomeSectionsUseCase
     }
     
+    //MARK: - Functions
     func loadInitialSections() async {
         isLoading = true
         let result = await fetchHomeSectionsUseCase.loadInitial()

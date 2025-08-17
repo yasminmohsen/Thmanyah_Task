@@ -12,20 +12,22 @@ struct SquareCardView: View {
     var contentItem: UIContentItem
     var body: some View {
         ZStack(alignment:.bottomLeading) {
+            //Avatar image
             KFImage(URL(string: contentItem.imageURL ?? ""))
                 .resizable()
-                 .frame(width:270, height: 180)
-                 .cornerRadius(20)
-                 .overlay {
-                     RoundedRectangle(cornerRadius: 20)
-                         .fill(.black.opacity(0.3))
-                 }
-                
+                .frame(width:270, height: 180)
+                .cornerRadius(20)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(.black.opacity(0.3))
+                }
+            //Title + Subtitle Box
             VStack(alignment: .leading,spacing: 6) {
                 Text("\(contentItem.title)")
                     .font(.system(size: 16, weight: .semibold))
                     .multilineTextAlignment(.leading)
                     .foregroundStyle(.white)
+                
                 if let episodesCount = contentItem.episodesCount {
                     Text("\(episodesCount) episodes")
                         .font(.system(size: 12, weight: .regular))
