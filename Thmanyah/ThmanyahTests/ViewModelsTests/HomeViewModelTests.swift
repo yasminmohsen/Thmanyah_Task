@@ -10,7 +10,7 @@ import XCTest
 
 @MainActor
 final class HomeViewModelTests: XCTestCase {
-    
+
     private var mockFetchHomeSectionsUseCase: MockFetchHomeSectionsUseCase!
     private var homeViewModel: HomeViewModel!
     
@@ -41,11 +41,10 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(homeViewModel.errorMessage, "Network error")
     }
     
-    func test_loadMoreSections_failure() async {
+    func test_loadMoreSections_noMorePages() async {
         mockFetchHomeSectionsUseCase.hasMorePages = false
         
         await homeViewModel.loadMoreSections()
-        
         XCTAssertTrue(homeViewModel.sections.isEmpty)
     }
 }

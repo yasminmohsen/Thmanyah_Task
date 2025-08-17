@@ -9,7 +9,7 @@ import XCTest
 
 final class ThmanyahUITestsLaunchTests: XCTestCase {
 
-   /* override class var runsForEachTargetApplicationUIConfiguration: Bool {
+   override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
 
@@ -29,5 +29,5 @@ final class ThmanyahUITestsLaunchTests: XCTestCase {
         attachment.name = "Launch Screen"
         attachment.lifetime = .keepAlways
         add(attachment)
-    }*/
+    }
 }
