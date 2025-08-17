@@ -10,12 +10,17 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         TabView {
-            HomeView()
-                .tabItem {
+            HomeView(viewModel: HomeViewModel(
+                fetchHomeSectionsUseCase: FetchHomeSectionsUseCase(
+                    homeRepo: HomeRepository(
+                        remoteDataSource: HomeRemoteDataSource(networkManager: NetworkManager.shared))))
+            )
+            .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
             
-            SearchView()
+            SearchView(viewModel: SearchViewModel(fetchSearchSectionsUseCase: FetchSearchSectionsUseCase(searchRepo: SearchRepository(remoteDataSource: SearchRemoteDataSource(networkManager: NetworkManager.shared))))
+            )
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }

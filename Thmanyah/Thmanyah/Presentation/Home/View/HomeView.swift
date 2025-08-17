@@ -8,13 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var viewModel = HomeViewModel(
-        fetchHomeSectionsUseCase: FetchHomeSectionsUseCase(
-            homeRepo: HomeRepository(
-                remoteDataSource: HomeRemoteDataSource(networkManager: NetworkManager.shared)
-            )
-        )
-    )
+    @ObservedObject private(set) var viewModel: HomeViewModel
     
     var body: some View {
         
@@ -50,5 +44,12 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: HomeViewModel(
+        fetchHomeSectionsUseCase: FetchHomeSectionsUseCase(
+            homeRepo: HomeRepository(
+                remoteDataSource: HomeRemoteDataSource(networkManager: NetworkManager.shared)
+            )
+        )
+    )
+)
 }

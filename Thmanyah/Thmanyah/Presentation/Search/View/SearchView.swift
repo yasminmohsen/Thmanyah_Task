@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct SearchView: View {
-    @StateObject private var viewModel = SearchViewModel(fetchSearchSectionsUseCase: FetchSearchSectionsUseCase(searchRepo: SearchRepository(remoteDataSource: SearchRemoteDataSource(networkManager: NetworkManager.shared))))
+    @ObservedObject private(set) var viewModel: SearchViewModel
     
     var body: some View {
         VStack {
@@ -37,5 +37,5 @@ struct SearchView: View {
 
 
 #Preview {
-    SearchView()
+    SearchView(viewModel: SearchViewModel(fetchSearchSectionsUseCase: FetchSearchSectionsUseCase(searchRepo: SearchRepository(remoteDataSource: SearchRemoteDataSource(networkManager: NetworkManager.shared)))))
 }
